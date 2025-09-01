@@ -1,6 +1,7 @@
 Crie um ambiente virtualizado para não instalar as dependências na versão global do python:
 
 python -m venv .venv <------execute
+
 .venv\Scripts\Activate.ps1 <------execute
 
 Agora instale as bibliotecas atraves do arquivo requirements.txt:
@@ -8,9 +9,9 @@ Agora instale as bibliotecas atraves do arquivo requirements.txt:
 pip install -r requirements.txt <------execute
 
 //////////////////////////////////////////////////////////////
-#1. Execute o arquivo relatorios.py para obter os relatorios análise exploratória dos dados
+#1. Execute o arquivo relatorios.py (ctrl + a com ele aberto, run current file in interactive window) para obter os relatorios análise exploratória dos dados
 
-#2.a = Com base no 4 relatorio, eu recomendaria o filme mais popular, que atraves do grafico se notou ser o filme The Dark Night, além de realmente ser um bom filme, com base nos atributos 'No_of_Votes', 'Gross', 'Meta_score', 'Genre' e 'Director'.
+#2.a = Com base nos 4 relatorio, eu recomendaria o filme mais popular, que atraves do grafico se notou ser o filme The Dark Night, além de realmente ser um bom filme, com base nos atributos 'No_of_Votes', 'Gross', 'Meta_score', 'Genre' e 'Director'.
 
 #2.b = Com certeza 'No_of_Votes', 'Genre', 'Director', 'Actors' e 'Meta_score':
 Numero de votos representa a popularidade do filme;
@@ -32,11 +33,11 @@ Usei 2 exemplos, regressão linear, mais simples e veloz e tem uma boa interpret
 Qual medida de performance do modelo foi escolhida e por quê?
 R: As medidas de performance utilizadas foram RMSE e R². RMSE: métrica usada para medir a magnitude média de erros, sendo assim mais fáicl de prever notas. Quanto mais próximo de 0 melhor. R²: Essa metrica indica a proporcao de variancia das variaveis de saida sendo explicada pelo modelo, valor varia de 0 a 1, quando mais proximo de 1 melhor o modelo está ajustado aos dados.
 
-#4. Rode o arquivo previsao_nota_imdb.py
+#4. Rode o arquivo previsao_nota_imdb.py (ctrl + a com ele aberto, run current file in interactive window)
 Através do modelo de regressão simples foi obtido o valor IMDB 9,27 RMSE: 0.201 R²: 0.387
 
 Já usando o modelo random forest, usando todos os valores do filme ele chegou num valor 
 IMDB 8.77 RMSE: 0.199 R²: 0.398
 
-
+#5 = Modelo salvo em .pkl
 
