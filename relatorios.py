@@ -79,7 +79,7 @@ def metricas_diretores(df):
     plt.style.use('seaborn-v0_8-bright')
     plt.tight_layout()
     plt.show()
-    
+
 def filmes_populares(df):
     # filtro
     df_popular = df.dropna(subset=['No_of_Votes', 'Gross', 'Meta_score']).copy()
@@ -111,7 +111,7 @@ def filmes_populares(df):
     )
     ax.set_xlabel('Pontuação de Popularidade', fontsize=14)
     ax.set_ylabel('Filme (Gênero)', fontsize=14)
-    ax.set_title('Top 15 Filmes Mais Populares por Gênero', fontsize=18, fontweight='bold')
+    ax.set_title('Top 15 Filmes Mais Populares', fontsize=18, fontweight='bold')
     plt.tight_layout()
     plt.show()
 

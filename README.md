@@ -1,43 +1,107 @@
-Crie um ambiente virtualizado para não instalar as dependências na versão global do python:
+Análise e Previsão da Nota de Filmes IMDb
 
-python -m venv .venv <------execute
+Este projeto realiza uma análise exploratória de dados de filmes e desenvolve um modelo de machine learning para prever a nota de um filme no IMDb, com base em suas características.
 
-.venv\Scripts\Activate.ps1 <------execute
+0. Configuração do Ambiente
 
-Agora instale as bibliotecas atraves do arquivo requirements.txt:
+Siga os passos abaixo para configurar o ambiente virtual e instalar as dependências necessárias:
 
-pip install -r requirements.txt <------execute
+Crie o ambiente virtual:
 
-//////////////////////////////////////////////////////////////
-#1. Execute o arquivo relatorios.py (ctrl + a com ele aberto, run current file in interactive window) para obter os relatorios análise exploratória dos dados
+    python -m venv .venv
 
-#2.a = Com base nos 4 relatorio, eu recomendaria o filme mais popular, que atraves do grafico se notou ser o filme The Dark Night, além de realmente ser um bom filme, com base nos atributos 'No_of_Votes', 'Gross', 'Meta_score', 'Genre' e 'Director'.
+Ative o ambiente virtual:
 
-#2.b = Com certeza 'No_of_Votes', 'Genre', 'Director', 'Actors' e 'Meta_score':
-Numero de votos representa a popularidade do filme;
-Os generos estao sempre ligados aos filmes com maior faturamento (ação, aventura, drama);
-Diretores de prestigio sempre relacionados a altos faturamentos em filmes;
-Atores de prestigio também tem relação com filmes de alto faturamento
-Filmes com notas altas muitas vezes tem alto faturamento.
+    .venv\Scripts\Activate.ps1
 
-#2.c = Através da leitura da coluna 'Overview', a sinopse do filme, da para inferir o genero do filme sim, na maioria dos casos. Ao utilizar uma IA do modelo NLP, para analisar a coluna 'Overview' seria bem fácil de determinar qual o genêro do filme com base na sinopse.
+Instale as bibliotecas a partir de requirements.txt:
 
-#3. Quais variáveis e/ou suas transformações você utilizou e por quê?
-R: Usei a variáveis numéricas = 'Released_Year', 'Runtime', 'Meta_score', 'No_of_Votes', 'Gross', e as variáveis categóricas 'Certificate', 'Genre', 'Director', 'Star1', 'Star2', 'Star3', 'Star4', para chegar no valor 'IMDB_Rating'. 
-Foram feitas transformações de dados em 'Runtime' e 'Gross' para remover caracteres como texto e converter para tipo numerico. Também foram feito preenchimento de valores nulos. As variáveis categóricas foram transformadas em formato numérico usando OneHotEncoder para melhorar o processamento.
+    pip install -r requirements.txt
 
-Qual tipo de problema estamos resolvendo?
-R: Este problema é do tipo de regrewssão, o objetivo é prever o valor da nota IMDB, que é um valor continuo e numérico.
-Usei 2 exemplos, regressão linear, mais simples e veloz e tem uma boa interpretabilidade, e me chegou no valor correto da nota IMDB. Usando o random forest regressor, que é um modelo de alto desempenho e um pouco mais complexo, usando todos os valores da tabela não consegui chegar no valor correto da nota IMBD, usando menos valores e valores mais relevantes pode ser o mais recomendado.
+1. Análise Exploratória de Dados
 
-Qual medida de performance do modelo foi escolhida e por quê?
-R: As medidas de performance utilizadas foram RMSE e R². RMSE: métrica usada para medir a magnitude média de erros, sendo assim mais fáicl de prever notas. Quanto mais próximo de 0 melhor. R²: Essa metrica indica a proporcao de variancia das variaveis de saida sendo explicada pelo modelo, valor varia de 0 a 1, quando mais proximo de 1 melhor o modelo está ajustado aos dados.
+    Execute o arquivo relatorios.py para gerar os gráficos e análises exploratórias.
 
-#4. Rode o arquivo previsao_nota_imdb.py (ctrl + a com ele aberto, run current file in interactive window)
-Através do modelo de regressão simples foi obtido o valor IMDB 9,27 RMSE: 0.201 R²: 0.387
+    Top 9 atores com mais filmes: relatorios-imagens\top9atores.png
 
-Já usando o modelo random forest, usando todos os valores do filme ele chegou num valor 
-IMDB 8.77 RMSE: 0.199 R²: 0.398
+    Lançamentos por ano: relatorios-imagens\lancamentos_por_ano.png
 
-#5 = Modelo salvo em .pkl
+    Top 10 Diretores com mais filmes e arrecadação: relatorios-imagens\top10_diretores_filmes_arrecadacao.png
 
+    Top 15 filmes mais populares: relatorios-imagens\top15_filmes_populares.png
+
+2. Resultados da Análise:
+
+    2a: O filme que eu recomendaria, com base nos atributos: No_of_Votes, Gross, Meta_score, Genre e Director, seria The Dark Knight, além de realmente ser um ótimo filme
+
+    2b: Variáveis Relevantes: As variáveis que mais influenciam a popularidade e faturamento de um filme são:
+
+            Número de Votos (No_of_Votes): Representa a popularidade do filme.
+
+            Gênero (Genre): Gêneros como ação, aventura e drama estão consistentemente ligados a filmes de alto faturamento.
+
+            Diretor e Atores (Director, Star1, Star2, etc.): Profissionais de prestígio frequentemente se correlacionam com altos faturamentos.
+
+            Metascore (Meta_score): Notas altas de críticos (Metascore) muitas vezes estão associadas a alto faturamento.
+
+    2c: A sinopse (Overview) de um filme, na maioria dos casos, pode ser usada para descobrir seu gênero. Usando uma IA com NLP é uma boa tática para inferir o gênero de um filme com base na sinopse.
+
+3. Modelagem Preditiva
+
+Variáveis e Transformações Utilizadas
+
+O modelo utiliza as seguintes variáveis para prever a nota no IMDb (IMDB_Rating):
+
+    Numéricas: 'Released_Year', 'Runtime', 'Meta_score', 'No_of_Votes', 'Gross'.
+
+    Categóricas: 'Certificate', 'Genre', 'Director', 'Star1', 'Star2', 'Star3', 'Star4'.
+
+As transformações aplicadas foram:
+
+    As colunas 'Runtime' e 'Gross' foram convertidas para o tipo numérico, removendo caracteres de texto.
+
+    Valores nulos foram preenchidos para garantir que o modelo possa ser treinado com êxito.
+
+    As variáveis categóricas foram codificadas numericamente usando OneHotEncoder para serem processadas pelo modelo.
+
+Tipo de Problema
+
+Este é um tipo de problema de regressão, onde o objetivo é prever um valor numérico contínuo, a nota do IMDb.
+
+O projeto testou dois modelos de regressão:
+
+    Regressão Linear: Um modelo mais simples e rápido, que apresentou um bom resultado.
+
+    Random Forest Regressor: Um modelo de alto desempenho e mais complexo. Embora tenha sido testado, o desempenho inicial pode melhorar usando variáveis mais relevantes.
+
+Medidas de Performance
+
+As métricas de avaliação do modelo foram:
+
+    RMSE (Root Mean Squared Error): Mede a magnitude média dos erros do modelo. Um valor mais próximo de zero indica melhor performance.
+
+    R² (Coeficiente de Determinação): Indica a proporção da variância dos dados que é explicada pelo modelo. O valor varia de 0 a 1, quando mais próximo de 1 mais ajustado o modelo está.
+
+4. Execução e Resultados do Modelo
+
+Execute o arquivo previsao_nota_imdb.py para rodar o modelo e obter a previsão da nota IMdb.
+
+Resultados:
+
+    Modelo de Regressão Linear:
+
+        Nota IMDB Prevista: 9.27
+
+        RMSE: 0.201
+
+        R²: 0.387
+
+    Modelo Random Forest:
+
+        Nota IMDB Prevista: 8.77
+
+        RMSE: 0.199
+
+        R²: 0.398
+
+5. Modelo de treinamento salvo em .pkl
