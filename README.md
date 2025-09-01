@@ -36,13 +36,13 @@ Instale as bibliotecas a partir de requirements.txt:
 
     2b: Variáveis Relevantes: As variáveis que mais influenciam a popularidade e faturamento de um filme são:
 
-            Número de Votos (No_of_Votes): Representa a popularidade do filme.
+            Número de Votos (No_of_Votes): Popularidade do filme
 
-            Gênero (Genre): Gêneros como ação, aventura e drama estão consistentemente ligados a filmes de alto faturamento.
+            Gênero (Genre): Ação, aventura e drama são os gêneros mais famosos e que estão ligados aos maiores faturamentos.
 
-            Diretor e Atores (Director, Star1, Star2, etc.): Profissionais de prestígio frequentemente se correlacionam com altos faturamentos.
+            Diretor e Atores (Director, Star1, Star2...): Artistas renomados geralmente estão relacionados a filmes de alto faturamento.
 
-            Metascore (Meta_score): Notas altas de críticos (Metascore) muitas vezes estão associadas a alto faturamento.
+            Metascore (Meta_score): Notas altas muitas vezes estão associadas a alto faturamento.
 
     2c: A sinopse (Overview) de um filme, na maioria dos casos, pode ser usada para descobrir seu gênero. Usando uma IA com NLP é uma boa tática para inferir o gênero de um filme com base na sinopse.
 
